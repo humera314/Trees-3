@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+# (TC): O(N)
+# (SC): O(H)
+
+'''Approach:
+Recursively checks if two given subtrees (left and right) are symmetric.
+Returns True if both left and right are None, means symmetry.
+Returns False if either left or right is None , or if their values differ.
+'''
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        
+        if root is None:
+            return True
+        def isSym(l,r):
+            if not l and not r:
+                return True
+            
+            if  not l or not r or l.val != r.val:
+                return False
+            
+            return isSym(l.left, r.right) and isSym(l.right, r.left)
+
+        return  isSym(root.left, root.right)
+        
